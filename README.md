@@ -127,7 +127,7 @@ README.md
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/RahulGaniger/recruiter-management-backend.git
 
 cd recruiter-management-backend
 ```
