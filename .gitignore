@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Environment Variables
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Migrations Cache
+alembic/__pycache__/
+
+# Uploads
+uploads/
+media/
+temp/
+
+# Database Files
+*.db
+*.sqlite3
+
+# Docker
+docker-compose.override.yml
+
+# Secrets
+secrets.json
+credentials.json
+
+# MyPy
+.mypy_cache/
+
+# Ruff
+.ruff_cache/
+
+# PyCharm
+.idea/
+
+# VS Code
+.history/
+
+# Node Modules (if frontend is inside same repo)
+node_modules/
+
+# React/Next.js build files
+.next/
+out/
