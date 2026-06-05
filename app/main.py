@@ -10,6 +10,7 @@ from app.models.job import Job
 from app.models.candidate import Candidate
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.upload import router as upload_router
+from app.routes.dashboard import router as dashboard_router
 
 app = FastAPI()
 
@@ -30,5 +31,6 @@ app.include_router(job_router)
 app.include_router(login_router)
 app.include_router(candidate_router)
 app.include_router(upload_router)
+app.include_router(dashboard_router)
 
 Base.metadata.create_all(bind=engine)
