@@ -52,22 +52,26 @@ def get_jobs(
 
     return db.query(Job).all()
 
-# Update Job Route
+# Get Job Route by ID
+@router.get("/{job_id}")
+def get_job(
+    job_id:UUID,
+    db:Session = Depends(get_db)
+):
+    return db.query(Job).filter(
+        Job.id == job_id
+    ).first()
+
 @router.patch("/{job_id}")
 def update_job(
     job_id: UUID,
     request: JobUpdate,
     db: Session = Depends(get_db)
 ):
-
-    job = db.query(Job).filter(
-        Job.id == job_id
-    ).first()
+    job = db.query(Job).filter(Job.id == job_id).first()
 
     if not job:
-        return {
-            "message": "Job not found"
-        }
+        return {"message": "Job not found"}
 
     if request.title is not None:
         job.title = request.title
@@ -78,8 +82,16 @@ def update_job(
     if request.skills_required is not None:
         job.skills_required = request.skills_required
 
-    db.commit()
+    if request.location is not None:          # ✅ added
+        job.location = request.location
 
+    if request.department is not None:        # ✅ added
+        job.department = request.department
+
+    if request.status is not None:            # ✅ added
+        job.status = request.status
+
+    db.commit()
     db.refresh(job)
 
     return {

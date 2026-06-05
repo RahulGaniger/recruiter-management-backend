@@ -8,6 +8,7 @@ class JobCreate(BaseModel):
     skills_required: str
     location: str
     department: str
+    status: Optional[str] = "OPEN"
 
 # Schema for Job update
 class JobUpdate(BaseModel):
@@ -16,3 +17,4 @@ class JobUpdate(BaseModel):
     skills_required: Optional[str] = None
     location: Optional[str] = None
     department: Optional[str] = None
+    status: Optional[str] = None
