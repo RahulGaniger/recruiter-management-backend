@@ -8,6 +8,7 @@ from app.utils.security import (
 )
 from app.core.dependencies import get_db
 from app.models.recruiter import Recruiter
+from fastapi import HTTPException
 
 router = APIRouter(
     prefix="/login",
@@ -16,33 +17,39 @@ router = APIRouter(
 
 @router.post("/login")
 def login(
-    request:LoginRequest,
-    db:Session = Depends(get_db)
+    request: LoginRequest,
+    db: Session = Depends(get_db)
 ):
 
     recruiter = db.query(
         Recruiter
     ).filter(
-        Recruiter.email ==
-        request.email
+        Recruiter.email == request.email
     ).first()
 
     if not recruiter:
-        return {"error":"invalid"}
+        raise HTTPException(
+            status_code=404,
+            detail="Recruiter account does not exist"
+        )
 
     if not verify_password(
         request.password,
         recruiter.password
     ):
-        return {"error":"invalid"}
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid password"
+        )
 
     token = create_access_token(
         {
             "sub": str(recruiter.id)
-
         }
     )
 
     return {
-        "access_token": token
+        "access_token": token,
+        "token_type": "Bearer",
+        "recruiter_id": str(recruiter.id)
     }

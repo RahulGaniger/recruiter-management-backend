@@ -1,11 +1,15 @@
 from fastapi import APIRouter
 from fastapi import APIRouter
 from uuid import UUID
+from sqlalchemy import DateTime
 from sqlalchemy.orm import Session
 from fastapi import Depends
 from app.models.job import Job
 from app.core.dependencies import get_current_user, get_db
 from app.schemas.job import JobCreate, JobUpdate
+
+
+
 
 router = APIRouter(
     prefix="/jobs",
@@ -26,6 +30,8 @@ def create_job(
         title=request.title,
         description=request.description,
         skills_required=request.skills_required,
+        location=request.location,
+        department=request.department,
         recruiter_id=current_user.id
     )
 
@@ -34,7 +40,8 @@ def create_job(
     db.commit()
 
     return {
-        "message":"Job Created"
+        "message":"Job Created successfully",
+        "job": job
     }
 
 # Get Jobs Route
