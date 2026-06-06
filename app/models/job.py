@@ -23,8 +23,6 @@ class Job(Base):
 
     status = Column(String, default="OPEN")
 
-    
-
     created_at = Column(
         DateTime,
         default=datetime.utcnow

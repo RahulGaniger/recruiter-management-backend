@@ -1,5 +1,3 @@
-
-
 import fitz
 
 def extract_resume_text(file_path):

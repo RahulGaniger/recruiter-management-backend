@@ -5,9 +5,7 @@ from app.routes.auth import router as auth_router
 from app.routes.job import router as job_router
 from app.routes.login import router as login_router
 from app.routes.candidate import router as candidate_router
-from app.models.recruiter import Recruiter
 from app.models.job import Job
-from app.models.candidate import Candidate
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.upload import router as upload_router
 from app.routes.dashboard import router as dashboard_router
@@ -15,7 +13,7 @@ from app.routes.dashboard import router as dashboard_router
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",  # Vite React
+    "http://localhost:5173",  
 ]
 
 app.add_middleware(

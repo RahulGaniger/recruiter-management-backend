@@ -1,139 +1,12 @@
 
-
-
-
-# from fastapi import APIRouter, UploadFile, File, Form, Depends
-# from sqlalchemy.orm import Session
-# from uuid import UUID
-# import uuid
-# import os
-# from app.core.dependencies import get_db
-# from app.models.candidate import Candidate
-# from app.services.resume_parser import (
-#     extract_resume_text
-# )
-# from app.services.ai_parser import (
-#     parse_resume
-# )
-# from app.services.fit_score import (
-#     calculate_fit_score
-# )
-# from app.models.candidate import Candidate
-# from app.models.job import Job
-# router = APIRouter(
-#     prefix="/analyze",
-#     tags=["Analyze"]
-# )
-
-# @router.post("/analyze")
-# async def analyze_resume(
-#     job_id: UUID = Form(...),
-#     resume: UploadFile = File(...),
-#     db: Session = Depends(get_db)
-# ):
-
-#     os.makedirs(
-#         "uploads",
-#         exist_ok=True
-#     )
-
-#     filename = f"{uuid.uuid4()}.pdf"
-
-#     file_path = f"uploads/{filename}"
-
-#     contents = await resume.read()
-
-#     with open(file_path, "wb") as file:
-#         file.write(contents)
-
-#     # Extract text
-#     resume_text = extract_resume_text(
-#         file_path
-#     )
-
-#     # Gemini parsing
-#     parsed_data = parse_resume(
-#         resume_text
-#     )
-
-#     job = db.query(Job).filter(
-#         Job.id == job_id
-#     ).first()
-
-#     if not job:
-#         return {
-#             "message": "Job not found"
-#         }
-
-#     fit_result = calculate_fit_score(
-#         job,
-#         parsed_data,
-#         resume_text
-#     )
-
-#     print(fit_result)
-
-#     return {
-#         "message":
-#             "Candidate analyzed successfully",
-
-#         "candidate": parsed_data,
-
-#         "fit_score":
-#             fit_result["fit_score"],
-
-#         "fit_reason":
-#             fit_result["fit_reason"],
-
-#         "strengths":
-#             fit_result["strengths"],
-
-#         "weaknesses":
-#             fit_result["weaknesses"],
-
-#         "matched_skills":
-#             fit_result["matched_skills"]
-#     }
-
-#     # Save candidate
-#     candidate = Candidate(
-#         name=parsed_data["name"],
-#         email=parsed_data["email"],
-#         phone=parsed_data["phone"],
-#         skills=",".join(
-#             parsed_data["skills"]
-#         ),
-#         experience_years=parsed_data[
-#             "experience_years"
-#         ],
-#         resume_path=file_path,
-#         job_id=job_id
-#     )
-
-#     db.add(candidate)
-
-#     db.commit()
-
-#     db.refresh(candidate)
-
-#     return {
-#         "message":
-#             "Candidate analyzed successfully",
-#         "candidate": candidate
-#     }
-
-
 from fastapi import APIRouter, UploadFile, File, Form, Depends
 from sqlalchemy.orm import Session
 from uuid import UUID
 import uuid
 import os
-
 from app.core.dependencies import get_db
-
 from app.models.candidate import Candidate
 from app.models.job import Job
-
 from app.services.resume_parser import extract_resume_text
 from app.services.ai_parser import parse_resume
 from app.services.fit_score import calculate_fit_score
@@ -143,7 +16,7 @@ router = APIRouter(
     tags=["Analyze"]
 )
 
-
+# Analyze Resume Route
 @router.post("/analyze")
 async def analyze_resume(
     job_id: UUID = Form(...),

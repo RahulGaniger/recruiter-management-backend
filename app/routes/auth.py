@@ -11,6 +11,7 @@ router = APIRouter(
     tags=["Auth"]
 )
 
+# Register Route
 @router.post("/register")
 def register(
     request:RegisterRequest,

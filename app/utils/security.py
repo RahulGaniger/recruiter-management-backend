@@ -12,7 +12,6 @@ pwd_context = CryptContext(
     deprecated="auto"
 )
 
-
 def hash_password(password: str):
     return pwd_context.hash(password)
 
@@ -26,7 +25,7 @@ def verify_password(
         hashed_password
     )
 
-
+# Function to create a JWT access token
 def create_access_token(data: dict):
 
     to_encode = data.copy()

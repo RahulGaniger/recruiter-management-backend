@@ -52,6 +52,15 @@ def get_jobs(
 
     return db.query(Job).all()
 
+# @router.get("/jobs")
+# def get_jobs(
+#     current_user=Depends(get_current_user),
+#     db: Session = Depends(get_db)
+# ):
+    return db.query(Job).filter(
+        Job.recruiter_id == current_user.id
+    ).all()
+
 # Get Job Route by ID
 @router.get("/{job_id}")
 def get_job(

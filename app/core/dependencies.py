@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 security = HTTPBearer()
 
+# Dependency to get a database session
 def get_db():
     db = SessionLocal()
 
@@ -18,7 +19,7 @@ def get_db():
         db.close()
 
 
-
+# Dependency to get the current authenticated user
 def get_current_user(
     token=Depends(security),
     db: Session = Depends(get_db)

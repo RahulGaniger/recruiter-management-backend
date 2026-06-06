@@ -15,6 +15,7 @@ router = APIRouter(
     tags=["Login"]
 )
 
+# Login Route
 @router.post("/login")
 def login(
     request: LoginRequest,
