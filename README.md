@@ -162,13 +162,17 @@ pip install -r requirements.txt
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the backend root directory and copy the values from `.env.example`.
+
+Example:
 
 ```env
-DATABASE_URL=postgresql://postgres:password@localhost:5432/recruiterdb
-
-SECRET_KEY=your-secret-key
+DATABASE_URL=your_database_url
+SECRET_KEY=your_secret_key
+GEMINI_API_KEY=your_gemini_api_key
 ```
+
+For resume parsing and candidate fit scoring, the application uses the Google Gemini API. Obtain an API key and add it to the `.env` file before running the application.
 
 ---
 
