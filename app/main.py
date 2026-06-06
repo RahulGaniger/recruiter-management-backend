@@ -14,7 +14,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173", 
-    "https://recruiter-management-frontend.vercel.app/",
+    "https://recruiter-management-frontend.vercel.app",
 ]
 
 app.add_middleware(
