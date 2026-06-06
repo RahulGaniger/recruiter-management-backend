@@ -13,7 +13,8 @@ from app.routes.dashboard import router as dashboard_router
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",  
+    "http://localhost:5173", 
+    "https://recruiter-management-frontend.vercel.app/",
 ]
 
 app.add_middleware(
